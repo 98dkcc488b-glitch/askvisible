@@ -1,0 +1,13 @@
+{
+  "brand": "YourBrand",
+  "competitors": ["CompetitorOne", "CompetitorTwo", "CompetitorThree"],
+  "prompts": [
+    "What are the best alternatives to CompetitorOne in 2026?",
+    "I'm looking for a cheap tool to do X. Recommendations?",
+    "What tools do indie developers use for X?",
+    "Compare the top 5 tools for X — short pros and cons.",
+    "List the newest X tools launched in the last six months."
+  ],
+  "model": "gemini-flash-latest",
+  "report_path": "reports/report.html"
+}

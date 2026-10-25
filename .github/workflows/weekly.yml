@@ -1,0 +1,46 @@
+name: Weekly AI visibility report
+
+on:
+  schedule:
+    # Every Monday 08:00 UTC
+    - cron: "0 8 * * 1"
+  workflow_dispatch: {}
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Generate report
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python run.py
+
+      - name: Upload report as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: askvisible-report
+          path: reports/
+
+      - name: Email report (optional — needs SMTP_* secrets)
+        if: ${{ env.SMTP_HOST != '' }}
+        env:
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: ${{ secrets.SMTP_HOST }}
+          server_port: ${{ secrets.SMTP_PORT || 587 }}
+          username: ${{ secrets.SMTP_USER }}
+          password: ${{ secrets.SMTP_PASSWORD }}
+          subject: "AskVisible weekly report"
+          to: ${{ secrets.SMTP_TO }}
+          from: ${{ secrets.SMTP_FROM }}
+          html_body: file://reports/report.html
+          convert_markdown: false

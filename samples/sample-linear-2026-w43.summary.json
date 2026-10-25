@@ -1,0 +1,10 @@
+{
+  "brand": "Linear",
+  "week": "2026-W43",
+  "generated_at": "2026-10-25T05:03:22Z",
+  "prompts_total": 5,
+  "prompts_ok": 5,
+  "brand_hits": 5,
+  "model": "gemini-3.6-flash",
+  "report_path": "reports/report.html"
+}
