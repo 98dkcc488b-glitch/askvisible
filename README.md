@@ -18,15 +18,18 @@ Clone it, add your Gemini key, done.
 
 ## Setup (one-time, 10 minutes)
 
-1. **Click "Use this template" → create a new private repo** on your own GitHub.
-2. **Get a Gemini API key** (free): [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
-3. **Add the key as a GitHub secret**:
+1. **Fork or copy this repo** to your own GitHub account.
+2. **Move the workflow into place**: rename `weekly.yml.template` to
+   `.github/workflows/weekly.yml` and commit. (It lives at the repo root here
+   because the publishing token can't ship workflow files.)
+3. **Get a Gemini API key** (free): [aistudio.google.com/apikey](https://aistudio.google.com/apikey).
+4. **Add the key as a GitHub secret**:
    Repo → Settings → Secrets and variables → Actions → New secret
    - Name: `GEMINI_API_KEY`
    - Value: (paste the key)
-4. **Edit `config.json`**: brand name, up to 10 competitors, 5–10 prompts the way
+5. **Edit `config.json`**: brand name, up to 10 competitors, 5–10 prompts the way
    your prospects would ask Gemini. Commit.
-5. **Enable the workflow** under the Actions tab (GitHub asks once).
+6. **Enable the workflow** under the Actions tab (GitHub asks once).
 
 That's it. The workflow runs every Monday at 08:00 UTC and uploads the report as
 an artifact you can download. See "Email delivery" below if you'd rather get it
